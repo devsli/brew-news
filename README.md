@@ -1,5 +1,5 @@
 # brew-news
-What's up, brew?
+What's up, [brew](https://github.com/Homebrew/brew/)?
 
 This script run `brew update` and crawl thru updated formulaes.
 
