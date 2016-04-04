@@ -1,0 +1,18 @@
+#!/bin/bash
+formulas=($(brew update | sed -n '/==> Updated/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
+current=1
+
+for formula in "${formulas[@]}"; do
+	printf "[ %3s / %3s ] %s\n" $current ${#formulas[@]} $formula
+	current=$((current+1))
+
+	while read -rsn1 c
+	do
+		case $c in
+			i) brew info $formula;;
+			n) brew home $formula; break;;
+			s) break;;
+			*) echo '[i] - show info; [s] - skip; [n] - visit homepage and continue';;
+		esac
+	done
+done
