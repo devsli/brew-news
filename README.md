@@ -3,7 +3,7 @@ What's up, brew?
 
 This script run `brew update` and crawl thru updated formulaes.
 
-## Navigation:
+## Navigation
 
 * Press `i` to show formulae info
 * Press `n` to open formulae homepage and go to next formulae
