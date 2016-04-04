@@ -1,6 +1,12 @@
 #!/bin/bash
-formulas=($(brew update | sed -n '/==> Updated/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
+formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
 current=1
+
+usage() {
+	echo '[i] - show info; [s] - skip; [n] - visit homepage and continue'
+}
+
+usage
 
 for formula in "${formulas[@]}"; do
 	printf "[ %3s / %3s ] %s\n" $current ${#formulas[@]} $formula
@@ -12,7 +18,7 @@ for formula in "${formulas[@]}"; do
 			i) brew info $formula;;
 			n) brew home $formula; break;;
 			s) break;;
-			*) echo '[i] - show info; [s] - skip; [n] - visit homepage and continue';;
+			*) usage;;
 		esac
 	done
 done
