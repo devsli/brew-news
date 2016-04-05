@@ -6,7 +6,9 @@ usage() {
 	echo '[i] - show info; [s] - skip; [h] - visit homepage and continue'
 }
 
-usage
+if [ ${#formulas[@]} -gt 0 ]; then
+	usage
+fi
 
 for formula in "${formulas[@]}"; do
 	printf "[ %3s / %3s ] %s\n" $current ${#formulas[@]} $formula
