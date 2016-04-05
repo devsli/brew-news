@@ -3,7 +3,7 @@ formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}'
 current=1
 
 usage() {
-	echo '[i] - show info; [s] - skip; [n] - visit homepage and continue'
+	echo '[i] - show info; [s] - skip; [h] - visit homepage and continue'
 }
 
 usage
@@ -16,7 +16,7 @@ for formula in "${formulas[@]}"; do
 	do
 		case $c in
 			i) brew info $formula;;
-			n) brew home $formula; break;;
+			h) brew home $formula; break;;
 			s) break;;
 			*) usage;;
 		esac
