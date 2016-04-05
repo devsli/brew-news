@@ -10,4 +10,4 @@ When started, it run `brew update` and iterate over new or updated formulae.
 * Press `h` to open formulae homepage and go next
 * Press `s` to go to the next formulae
 
-[![asciicast](https://asciinema.org/a/41294.png)](https://asciinema.org/a/41294)
+[![asciicast](https://asciinema.org/a/1dj119vinorgrbjuxsmvx4nfb.png)](https://asciinema.org/a/1dj119vinorgrbjuxsmvx4nfb)
