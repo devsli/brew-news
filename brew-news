@@ -1,4 +1,10 @@
 #!/bin/bash
+
+if [ "$1" == '-v' ]; then
+	echo '1.0'
+	exit;
+fi;
+
 formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
 current=1
 
