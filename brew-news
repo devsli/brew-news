@@ -5,6 +5,15 @@ if [ "$1" == '-v' ]; then
 	exit;
 fi;
 
+# sed explanation:
+#
+# /==> (Updated|New)/,/==> Deleted/ { # from Updated or New line and to Deleted
+#     /==>/d                          # delete section marker lines
+#     p                               # and print the remaining packages
+# }
+#
+# anything else is dropped by `-n` flag
+
 formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
 current=1
 
