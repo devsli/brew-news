@@ -25,3 +25,9 @@ $ brew news
 * Press `s` to go to the next formulae
 
 [![asciicast](https://asciinema.org/a/1dj119vinorgrbjuxsmvx4nfb.png)](https://asciinema.org/a/1dj119vinorgrbjuxsmvx4nfb)
+
+## Uninstall
+
+```
+$ brew untap devsli/news
+```
