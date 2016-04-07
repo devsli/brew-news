@@ -1,8 +1,6 @@
-# brew-news
+# brew news
 
 Software exploration tool for [brew](https://github.com/Homebrew/brew/).
-
-When started, it run `brew update` and iterate over new or updated formulae.
 
 ## Install
 
@@ -15,7 +13,7 @@ $ brew tap devsli/news
 Just run `brew news` to update formulae and see, what was updated.
 
 ```
-% brew news
+$ brew news
 [i] - show info; [s] - skip; [h] - visit homepage and continue
 [   1 /   5 ] ammonite-repl
 ```
