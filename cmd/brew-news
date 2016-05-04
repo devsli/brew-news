@@ -1,41 +1,45 @@
 #!/bin/bash
 
-if [ "$1" == '-v' ]; then
-	echo '1.0'
-	exit;
-fi;
-
-# sed explanation:
-#
-# /==> (Updated|New)/,/==> Deleted/ { # from Updated or New line and to Deleted
-#     /==>/d                          # delete section marker lines
-#     p                               # and print the remaining packages
-# }
-#
-# anything else is dropped by `-n` flag
-
-formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
-current=1
-
-usage() {
-	echo '[i] - show info; [s] - skip; [h] - visit homepage and continue'
-}
-
-if [ ${#formulas[@]} -gt 0 ]; then
-	usage
-fi
-
-for formula in "${formulas[@]}"; do
-	printf "[ %3s / %3s ] %s\n" $current ${#formulas[@]} $formula
-	current=$((current+1))
-
-	while read -rsn1 c
-	do
-		case $c in
-			i) brew info $formula;;
-			h) brew home $formula; break;;
-			s) break;;
-			*) usage;;
-		esac
+(
+	cd /tmp
+	
+	if [ "$1" == '-v' ]; then
+		echo '1.0'
+		exit;
+	fi;
+	
+	# sed explanation:
+	#
+	# /==> (Updated|New)/,/==> Deleted/ { # from Updated or New line and to Deleted
+	#     /==>/d                          # delete section marker lines
+	#     p                               # and print the remaining packages
+	# }
+	#
+	# anything else is dropped by `-n` flag
+	
+	formulas=($(brew update | sed -En '/==> (Updated|New)/,/==> Deleted/{/==>/d;p;}' | sort | uniq))
+	current=1
+	
+	usage() {
+		echo '[i] - show info; [s] - skip; [h] - visit homepage and continue'
+	}
+	
+	if [ ${#formulas[@]} -gt 0 ]; then
+		usage
+	fi
+	
+	for formula in "${formulas[@]}"; do
+		printf "[ %3s / %3s ] %s\n" $current ${#formulas[@]} $formula
+		current=$((current+1))
+	
+		while read -rsn1 c
+		do
+			case $c in
+				i) brew info $formula;;
+				h) brew home $formula; break;;
+				s) break;;
+				*) usage;;
+			esac
+		done
 	done
-done
+)
